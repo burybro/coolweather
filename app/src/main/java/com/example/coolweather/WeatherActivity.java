@@ -1,5 +1,6 @@
 package com.example.coolweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -23,6 +24,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.bumptech.glide.Glide;
 import com.example.coolweather.gson.AQI;
 import com.example.coolweather.gson.Weather;
+import com.example.coolweather.service.AutoUpdateService;
 import com.example.coolweather.util.HttpUtil;
 
 import org.jetbrains.annotations.NotNull;
@@ -281,5 +283,7 @@ public class WeatherActivity extends AppCompatActivity {
         sportText.setText("运动指数："+weather.getHeWeather6().get(0).getLifestyle().get(3).getTxt());
 
         weatherLayout.setVisibility(View.VISIBLE);
+        Intent intent=new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 }
